@@ -20,15 +20,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        stopRecordingButton.isEnabled = false
+//        stopRecordingButton.isEnabled = false
     }
 
 
     @IBAction func recordAudio(_ sender: Any) {
-        recordLabel.text = "Recording in progress"
-        recordButton.isEnabled = false
-        stopRecordingButton.isEnabled = true
-
+        
+        configureUI(recording: true)
+        
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
         let pathArray = [dirPath, recordingName]
@@ -47,9 +46,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
 
     @IBAction func stopRecordAudio(_ sender: Any) {
-        recordLabel.text = "Tap to record"
-        recordButton.isEnabled = true
-        stopRecordingButton.isEnabled = false
+        configureUI(recording: false)
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
@@ -59,7 +56,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         if flag {
             performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
         } else {
-            print("Recoding was not sucessful")
+            PlaySoundsViewController().showAlert(PlaySoundsViewController.Alerts.RecordingFailedTitle, message: PlaySoundsViewController.Alerts.RecordingFailedMessage)
         }
         
     }
@@ -70,6 +67,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             let recordedAudioURL = sender as! URL
             playSoundsVC.recordedAudioURL = recordedAudioURL
         }
+    }
+    
+    func configureUI(recording: Bool) {
+        recordLabel.text = recording ? "Recording in progress... \n Tap to stop" : "Tap to Record"
+//        stopRecordingButton.isEnabled = recording
+//        recordButton.isEnabled = !recording
+        stopRecordingButton.isHidden = !recording
+        recordButton.isHidden = recording
     }
 }
 

@@ -22,14 +22,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRp-A2-A1Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to record" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRp-A2-A1Z">
                                 <rect key="frame" x="128" y="405" width="118" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9MP-o2-b2f">
-                                <rect key="frame" x="142" y="444" width="90" height="90"/>
+                                <rect key="frame" x="142" y="288" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="GUL-9v-OKt"/>
                                     <constraint firstAttribute="height" constant="90" id="Rvy-Aj-oAB"/>
@@ -53,11 +53,11 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9MP-o2-b2f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6MJ-YK-fcY"/>
                             <constraint firstItem="dzm-Ya-Kjj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7UO-q7-eP1"/>
+                            <constraint firstItem="9MP-o2-b2f" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Fi0-tI-Jx4"/>
                             <constraint firstItem="BRp-A2-A1Z" firstAttribute="top" secondItem="dzm-Ya-Kjj" secondAttribute="bottom" constant="7" id="R42-hb-UIg"/>
-                            <constraint firstItem="9MP-o2-b2f" firstAttribute="centerX" secondItem="BRp-A2-A1Z" secondAttribute="centerX" id="UMp-07-3nv"/>
                             <constraint firstItem="BRp-A2-A1Z" firstAttribute="centerX" secondItem="dzm-Ya-Kjj" secondAttribute="centerX" id="eC8-zl-IrU"/>
-                            <constraint firstItem="9MP-o2-b2f" firstAttribute="top" secondItem="BRp-A2-A1Z" secondAttribute="bottom" constant="15" id="eYK-v3-K9l"/>
                             <constraint firstItem="dzm-Ya-Kjj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i6h-FF-0fF"/>
                         </constraints>
                     </view>
