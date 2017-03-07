@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
+class RecordSoundsViewController: UIViewController {
     
     var audioRecorder: AVAudioRecorder!
 
@@ -40,7 +40,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
-        
     }
 
 
@@ -51,14 +50,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         try! audioSession.setActive(false)
     }
     
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if flag {
-            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
-        } else {
-            PlaySoundsViewController().showAlert(PlaySoundsViewController.Alerts.RecordingFailedTitle, message: PlaySoundsViewController.Alerts.RecordingFailedMessage)
-        }
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "stopRecording" {
@@ -72,6 +63,19 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordLabel.text = recording ? "Recording in progress... \n Tap to stop" : "Tap to Record"
         stopRecordingButton.isHidden = !recording
         recordButton.isHidden = recording
+    }
+}
+
+// MARK: - AVAudioRecorderDelegate
+
+extension RecordSoundsViewController: AVAudioRecorderDelegate {
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
+        } else {
+            PlaySoundsViewController().showAlert(PlaySoundsViewController.Alerts.RecordingFailedTitle, message: PlaySoundsViewController.Alerts.RecordingFailedMessage)
+        }
     }
 }
 
