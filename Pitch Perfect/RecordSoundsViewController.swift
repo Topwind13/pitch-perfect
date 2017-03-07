@@ -12,16 +12,15 @@ import AVFoundation
 class RecordSoundsViewController: UIViewController {
     
     var audioRecorder: AVAudioRecorder!
-
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
 
     @IBAction func recordAudio(_ sender: Any) {
         
@@ -42,14 +41,12 @@ class RecordSoundsViewController: UIViewController {
         audioRecorder.record()
     }
 
-
     @IBAction func stopRecordAudio(_ sender: Any) {
         configureUI(recording: false)
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "stopRecording" {
@@ -64,6 +61,8 @@ class RecordSoundsViewController: UIViewController {
         stopRecordingButton.isHidden = !recording
         recordButton.isHidden = recording
     }
+    
+    
 }
 
 // MARK: - AVAudioRecorderDelegate
@@ -77,5 +76,7 @@ extension RecordSoundsViewController: AVAudioRecorderDelegate {
             PlaySoundsViewController().showAlert(PlaySoundsViewController.Alerts.RecordingFailedTitle, message: PlaySoundsViewController.Alerts.RecordingFailedMessage)
         }
     }
+    
+    
 }
 
